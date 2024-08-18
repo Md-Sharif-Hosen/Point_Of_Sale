@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Helper\JWTToken;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function user_registration(request $request)
+    public function UserRegistration(request $request)
     {
         try{
 
@@ -18,11 +19,13 @@ class UserController extends Controller
                  'last_name' => $request->input('last_name'),
                  'email' => $request->input('email'),
                  'mobile' => $request->input('mobile'),
-                 'password' => Hash::make($request->input('password')),
+                 'password' => $request->input('password'),
+                //  'password' => Hash::make($request->input('password')),
              ]);
              return response()->json([
                 "status"=>"success",
                 "message"=> "User Registration Successfull"
+                // "message"=> $user
              ]);
         }
         catch(Exception $e){
@@ -32,5 +35,32 @@ class UserController extends Controller
             //    'message'=>$e->getMessage()
           ]);
         }
+    }
+
+    public function UserLogin(request $request)
+    {
+        //function_body
+        try{
+          $count=User::where( 'email' , '=' ,$request->input("email"))
+          ->where('password','=',$request->input("password"))
+          ->count();
+ 
+          if ($count==1) {
+           $token=JWTToken::CreateToken($request->input("email"));
+           return response()->json([
+             'status'=>'success',
+             'message'=>"User login successfull",
+             'token'=>$token
+           ],200);
+          }else{
+           return response()->json([
+             'status'=>'Failed',
+             'message'=>"Unauthorized",
+           ],200);
+          }
+        }catch(Exception $e){
+          return $e->getMessage();
+        }
+        
     }
 }

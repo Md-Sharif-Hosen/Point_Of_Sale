@@ -30,4 +30,5 @@ Route::get('/', function () {
 // Route::get('/contacts/destroy/{id}', [ContactController::class, 'destroy'])->name('contacts.destroy');
 
 //!User
-Route::post('/user_registration',[UserController::class,'user_registration'])->name('user-registration');
+Route::post('/user_registration',[UserController::class,'UserRegistration'])->name('user_registration');
+Route::post('/user_login',[UserController::class,'UserLogin'])->name('user_login');
