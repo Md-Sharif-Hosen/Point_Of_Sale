@@ -35,3 +35,6 @@ Route::post('/user_login',[UserController::class,'UserLogin'])->name('user_login
 
 //send-otp
 Route::post('/send-otpcode',[UserController::class,'SendOTPCode'])->name('send-otpcode');
+
+//verify-otp
+Route::post('/verify-otp',[UserController::class,'VerifyOTP'])->name('verify-otp');
