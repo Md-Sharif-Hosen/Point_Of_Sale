@@ -20,15 +20,12 @@ use Firebase\JWT\Key;
 
      public static function VerfyToken($token) :string {
         try {
-          if($token==null){
-            return 'Unauthorized'
-          }else{
-
+      
             $key=env('JWT_KEY');
             $decode=JWT::decode($token, new key($key,'HS256'));
             return $decode->userEmail;
           }
-          }
+          
            catch (Exception $e) {
             
             return "Unauthorized";
