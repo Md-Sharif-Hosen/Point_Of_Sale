@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\View\View;
 use App\Models\User;
 use App\Helper\JWTToken;
 use App\Mail\OTPMail;
@@ -12,6 +12,37 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
+    public function LoginPage():view
+      {
+        return view('pages.auth.login-page');
+      }
+
+    public function RegistrationPage():view
+      {
+        return view('pages.auth.registration-page');
+      }
+
+    public function SendOTPPage():view
+      {
+        return view('pages.auth.send-otp-page');
+      }
+
+    public function VerifyOTPPage():view
+      {
+        return view('pages.auth.verify-otp-page');
+      }
+
+    public function ResetPasswordPage():view
+      {
+        return view('pages.auth.reset-password-page');
+      }
+ 
+
+    public function UserProfilePage():view
+      {
+        return view('pages.dashboard.profile-page');
+      }
+ 
     public function UserRegistration(request $request)
     {
         try{
@@ -119,7 +150,7 @@ class UserController extends Controller
         try{
           $email=$request->header('email');
           $password=$request->input('password');
- User::where('email','=',$email)->update(['password'=>$password]);
+        User::where('email','=',$email)->update(['password'=>$password]);
           return response()->json([
                    'status'=>'success',
                   //  'message'=>$result

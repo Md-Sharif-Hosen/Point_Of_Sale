@@ -3,6 +3,12 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Middleware\TokenverificationMiddleware;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,25 +26,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//contract
-/*   Route::resource('contact', ContactController::class); */
-// Route::get('/contacts',[ContactController::class,"index"])->name('contacts');
-// Route::get('/contacts/create',[ContactController::class,'create'])->name('contacts.create');
-// Route::post('/contacts/store',[ContactController::class,'store'])->name('contacts.store');
-// Route::get('/contacts/show/{id}', [ContactController::class, 'show'])->name('contacts.show');
-// Route::get('/contacts/edit/{id}', [ContactController::class, 'edit'])->name('contacts.edit');
-// Route::put('/contacts/update', [ContactController::class, 'update'])->name('contacts.update');
-// Route::get('/contacts/destroy/{id}', [ContactController::class, 'destroy'])->name('contacts.destroy');
-
-//!User
+//!web API Routes
 Route::post('/user_registration',[UserController::class,'UserRegistration'])->name('user_registration');
 Route::post('/user_login',[UserController::class,'UserLogin'])->name('user_login');
-
-//send-otp
 Route::post('/send-otpcode',[UserController::class,'SendOTPCode'])->name('send-otpcode');
-
-//verify-otp
 Route::post('/verify-otp',[UserController::class,'VerifyOTP'])->name('verify-otp');
-
-//reset password
 Route::post('/reset-password',[UserController::class,'PasswordReset'])->name('reset-password')->middleware([TokenverificationMiddleware::class]);
+
+
+//page Routes
+Route::get('/userLogin',[UserController::class,'LoginPage'])->name('userLogin');
+Route::get('/userRegistration',[UserController::class,'RegistrationPage'])->name('userRegistration');
+Route::get('/sendOTP',[UserController::class,'SendOTPPage'])->name('sendOTP');
+Route::get('/verifyOTP',[UserController::class,'VerifyOTPPage'])->name('verifyOTP');
+Route::get('/resetPassword',[UserController::class,'ResetPasswordPage'])->name('resetPassword');
+Route::get('/dashboard',[DashboardController::class,'DashboardPage'])/* ->middleware([TokenverificationMiddleware::class]) */;
+Route::get('/userProfile',[UserController::class,'UserProfilePage'])/* ->middleware([TokenverificationMiddleware::class]) */;
+Route::get('/categoryPage',[CategoryController::class,'CategoryPage']);
+Route::get('/customerPage',[CustomerController::class,'CustomerPage']);
+Route::get('/productPage',[ProductController::class,'ProductPage']);
+Route::get('/invoicePage',[InvoiceController::class,'InvoicePage']);
+Route::get('/salePage',[InvoiceController::class,'SalePage']);
+Route::get('/reportPage',[ReportController::class,'ReportPage']);
