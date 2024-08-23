@@ -34,6 +34,8 @@ Route::post('/verify_otp',[UserController::class,'VerifyOTP'])->name('verify_otp
 Route::post('/reset_password',[UserController::class,'PasswordReset'])->name('reset_password')->middleware([TokenverificationMiddleware::class]);
 
 
+Route::get('/logout',[UserController::class,'UserLogout'])->name('logout');
+
 //page Routes
 Route::get('/userLogin',[UserController::class,'LoginPage'])->name('userLogin');
 Route::get('/userRegistration',[UserController::class,'RegistrationPage'])->name('userRegistration');

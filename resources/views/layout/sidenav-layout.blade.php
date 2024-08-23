@@ -60,7 +60,7 @@
                     <a href="{{ url('/userProfile') }}" class="side-bar-item">
                         <span class="side-bar-item-caption">Profile</span>
                     </a>
-                    <a href="" class="side-bar-item">
+                    <a href="{{ route('logout') }}" class="side-bar-item">
                         <span class="side-bar-item-caption">Logout</span>
                     </a>
                 </div>
