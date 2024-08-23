@@ -31,7 +31,7 @@ Route::post('/user_registration',[UserController::class,'UserRegistration'])->na
 Route::post('/user_login',[UserController::class,'UserLogin'])->name('user_login');
 Route::post('/send_otpcode',[UserController::class,'SendOTPCode'])->name('send_otpcode');
 Route::post('/verify_otp',[UserController::class,'VerifyOTP'])->name('verify_otp');
-Route::post('/reset-password',[UserController::class,'PasswordReset'])->name('reset-password')->middleware([TokenverificationMiddleware::class]);
+Route::post('/reset_password',[UserController::class,'PasswordReset'])->name('reset_password')->middleware([TokenverificationMiddleware::class]);
 
 
 //page Routes
@@ -39,7 +39,7 @@ Route::get('/userLogin',[UserController::class,'LoginPage'])->name('userLogin');
 Route::get('/userRegistration',[UserController::class,'RegistrationPage'])->name('userRegistration');
 Route::get('/sendOTP',[UserController::class,'SendOTPPage'])->name('sendOTP');
 Route::get('/verifyOTP',[UserController::class,'VerifyOTPPage'])->name('verifyOTP');
-Route::get('/resetPassword',[UserController::class,'ResetPasswordPage'])->name('resetPassword')->middleware([TokenverificationMiddleware::class]);
+Route::get('/resetPassword',[UserController::class,'ResetPasswordPage'])->middleware([TokenverificationMiddleware::class]);
 Route::get('/dashboard',[DashboardController::class,'DashboardPage'])->middleware([TokenverificationMiddleware::class]);
 Route::get('/userProfile',[UserController::class,'UserProfilePage'])->middleware([TokenverificationMiddleware::class]);
 Route::get('/categoryPage',[CategoryController::class,'CategoryPage']);
