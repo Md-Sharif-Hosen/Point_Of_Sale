@@ -16,7 +16,7 @@ class TokenverificationMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $token=$request->header('token');
+        $token=$request->cookie('token');
         $result=JWTToken::VerfyToken($token);
             if($result=="Unauthorized")
             {

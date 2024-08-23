@@ -10,6 +10,7 @@
     <link href="{{asset('assets/css/fontawesome.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/css/toastify.min.css')}}" rel="stylesheet" />
+    
     <script src="{{asset('assets/js/toastify-js.js')}}"></script>
     <script src="{{asset('assets/js/axios.min.js')}}"></script>
     <script src="{{asset('assets/js/config.js')}}"></script>
@@ -17,7 +18,7 @@
 
 <body>
 
-<div id="loader" class="LoadingOverlay d-none">
+<div id="loader" class="LoadingOverlayd d-none">
 <div class="Line-Progress">
     <div class="indeterminate"></div>
 </div>

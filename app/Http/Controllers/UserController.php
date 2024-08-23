@@ -48,8 +48,8 @@ class UserController extends Controller
         try{
 
             $user= User::create([
-                 'first_name' => $request->input('first_name'),
-                 'last_name' => $request->input('last_name'),
+                 'firstName' => $request->input('firstName'),
+                 'lastName' => $request->input('lastName'),
                  'email' => $request->input('email'),
                  'mobile' => $request->input('mobile'),
                  'password' => $request->input('password'),
@@ -83,8 +83,8 @@ class UserController extends Controller
            return response()->json([
              'status'=>'success',
              'message'=>"User login successfull",
-             'token'=>$token
-           ],200);
+             
+           ],200)->cookie('token',$token ,time()+60*24);
           }else{
            return response()->json([
              'status'=>'Failed',
