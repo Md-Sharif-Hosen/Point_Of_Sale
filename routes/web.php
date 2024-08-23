@@ -43,7 +43,7 @@ Route::get('/sendOTP',[UserController::class,'SendOTPPage'])->name('sendOTP');
 Route::get('/verifyOTP',[UserController::class,'VerifyOTPPage'])->name('verifyOTP');
 Route::get('/resetPassword',[UserController::class,'ResetPasswordPage'])->middleware([TokenverificationMiddleware::class]);
 Route::get('/dashboard',[DashboardController::class,'DashboardPage'])->middleware([TokenverificationMiddleware::class]);
-Route::get('/userProfile',[UserController::class,'UserProfilePage'])->middleware([TokenverificationMiddleware::class]);
+Route::get('/userProfile',[UserController::class,'UserProfilePage']);
 Route::get('/categoryPage',[CategoryController::class,'CategoryPage']);
 Route::get('/customerPage',[CustomerController::class,'CustomerPage']);
 Route::get('/productPage',[ProductController::class,'ProductPage']);
