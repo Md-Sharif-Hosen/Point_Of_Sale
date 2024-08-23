@@ -29,8 +29,8 @@ Route::get('/', function () {
 //!web API Routes
 Route::post('/user_registration',[UserController::class,'UserRegistration'])->name('user_registration');
 Route::post('/user_login',[UserController::class,'UserLogin'])->name('user_login');
-Route::post('/send-otpcode',[UserController::class,'SendOTPCode'])->name('send-otpcode');
-Route::post('/verify-otp',[UserController::class,'VerifyOTP'])->name('verify-otp');
+Route::post('/send_otpcode',[UserController::class,'SendOTPCode'])->name('send_otpcode');
+Route::post('/verify_otp',[UserController::class,'VerifyOTP'])->name('verify_otp');
 Route::post('/reset-password',[UserController::class,'PasswordReset'])->name('reset-password')->middleware([TokenverificationMiddleware::class]);
 
 
