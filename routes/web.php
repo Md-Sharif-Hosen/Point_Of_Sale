@@ -26,7 +26,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//!web API Routes
+//!User API Routes
 Route::post('/user_registration', [UserController::class, 'UserRegistration'])->name('user_registration');
 Route::post('/user_login', [UserController::class, 'UserLogin'])->name('user_login');
 Route::post('/send_otpcode', [UserController::class, 'SendOTPCode'])->name('send_otpcode');
@@ -38,7 +38,12 @@ Route::post('/updateProfile', [UserController::class, 'UpdateProfile'])->name('u
 
 Route::get('/logout', [UserController::class, 'UserLogout'])->name('logout');
 
-//page Routes
+//!Category API Routes
+Route::get('/categoryList',[CategoryController::class,'CategoryList'])->name('categoryList')->middleware([TokenverificationMiddleware::class]);
+Route::post('/categoryCreate',[CategoryController::class,'CategoryCreate'])->name('categoryCreate')->middleware([TokenverificationMiddleware::class]);
+Route::post('/categoryUpdate',[CategoryController::class,'CategoryUpdate'])->middleware([TokenverificationMiddleware::class]);
+Route::delete('/categoryDelete',[CategoryController::class,'CategoryDelete'])->middleware([TokenverificationMiddleware::class]);
+//!page Routes
 Route::get('/userLogin', [UserController::class, 'LoginPage'])->name('userLogin');
 Route::get('/userRegistration', [UserController::class, 'RegistrationPage'])->name('userRegistration');
 Route::get('/sendOTP', [UserController::class, 'SendOTPPage'])->name('sendOTP');
