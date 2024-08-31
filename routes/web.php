@@ -41,8 +41,9 @@ Route::get('/logout', [UserController::class, 'UserLogout'])->name('logout');
 //!Category API Routes
 Route::get('/categoryList',[CategoryController::class,'CategoryList'])->name('categoryList')->middleware([TokenverificationMiddleware::class]);
 Route::post('/categoryCreate',[CategoryController::class,'CategoryCreate'])->name('categoryCreate')->middleware([TokenverificationMiddleware::class]);
+Route::post('/category-by-id',[CategoryController::class,'CategoryByID'])->middleware([TokenverificationMiddleware::class]);
 Route::post('/categoryUpdate',[CategoryController::class,'CategoryUpdate'])->middleware([TokenverificationMiddleware::class]);
-Route::delete('/categoryDelete',[CategoryController::class,'CategoryDelete'])->middleware([TokenverificationMiddleware::class]);
+Route::post('/categoryDelete',[CategoryController::class,'CategoryDelete'])->middleware([TokenverificationMiddleware::class]);
 //!page Routes
 Route::get('/userLogin', [UserController::class, 'LoginPage'])->name('userLogin');
 Route::get('/userRegistration', [UserController::class, 'RegistrationPage'])->name('userRegistration');
