@@ -25,11 +25,55 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="update-modal-close" class="btn bg-gradient-primary" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                <button onclick="Update()" id="update-btn" class="btn bg-gradient-success" >Update</button>
+                <button id="update-modal-close" class="btn bg-gradient-primary" data-bs-dismiss="modal"
+                    aria-label="Close">Close</button>
+                <button onclick="Update()" id="update-btn" class="btn bg-gradient-success">Update</button>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    async function FillUpUpdateForm(id) {
+        document.getElementById("updateID").value = id;
+        showLoader();
+        let res = await axios.post("/customerByID", {
+            id: id
+        });
+        hideLoader();
+        document.getElementById("customerNameUpdate").value = res.data['name'];
+        document.getElementById("customerEmailUpdate").value = res.data['email'];
+        document.getElementById("customerMobileUpdate").value = res.data['mobile'];
+    }
 
+    async function Update() {
+        let customerName = document.getElementById('customerNameUpdate').value;
+        let customerEmail = document.getElementById('customerEmailUpdate').value;
+        let customerMobile = document.getElementById('customerMobileUpdate').value;
+        let updateID = document.getElementById('updateID').value;
+        if (customerName.length === 0) {
+            errorToast("Customer Name is required");
+        } else if (customerEmail.length === 0) {
+            errorToast("Customer Email is required");
+        } else if (customerMobile.length === 0) {
+            errorToast("Customer Mobile is required");
+        } else {
+            showLoader()
+            let res = await axios.post("/customerUpdate", {
+                id: updateID,
+                name: customerName,
+                email: customerEmail,
+                mobile: customerMobile
+            });
+            hideLoader();
+            if (res.status === 200 && res.data===1) {
+                successToast("Customer Updated Successfully");
+                document.getElementById('update-modal-close').click();
+                await getList();
+            } else {
+                errorToast("Failed to Update Customer");
+            }
+
+        }
+    }
+</script>

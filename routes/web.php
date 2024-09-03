@@ -44,6 +44,13 @@ Route::post('/categoryCreate',[CategoryController::class,'CategoryCreate'])->nam
 Route::post('/category-by-id',[CategoryController::class,'CategoryByID'])->middleware([TokenverificationMiddleware::class]);
 Route::post('/categoryUpdate',[CategoryController::class,'CategoryUpdate'])->middleware([TokenverificationMiddleware::class]);
 Route::post('/categoryDelete',[CategoryController::class,'CategoryDelete'])->middleware([TokenverificationMiddleware::class]);
+
+Route::get('/customerList',[CustomerController::class,'CustomerList'])->middleware(TokenverificationMiddleware::class);
+Route::post('/customerCreate',[CustomerController::class,'CustomerCreate'])->middleware(TokenverificationMiddleware::class);
+Route::post('/customerByID',[CustomerController::class,'CustomerByID'])->middleware(TokenverificationMiddleware::class);
+Route::post('/customerUpdate',[CustomerController::class,'CustomerUpdate'])->middleware(TokenverificationMiddleware::class);
+Route::post('/customerDelete',[CustomerController::class,'CustomerDelete'])->middleware(TokenverificationMiddleware::class);
+
 //!page Routes
 Route::get('/userLogin', [UserController::class, 'LoginPage'])->name('userLogin');
 Route::get('/userRegistration', [UserController::class, 'RegistrationPage'])->name('userRegistration');
