@@ -24,7 +24,7 @@
         let id = document.getElementById("deleteID").value;
         document.getElementById('delete-modal-close').click();
         showLoader();
-        let res = await axios.post("/customerDelete",{id:id});
+        let res = await axios.post("/customer_delete",{id:id});
         hideLoader();
         if(res.data===1){
             successToast('Deleted Successfully');

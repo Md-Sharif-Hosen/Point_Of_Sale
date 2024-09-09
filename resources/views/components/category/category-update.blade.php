@@ -28,7 +28,7 @@
     async function FillUpUpdateForm(id) {
         document.getElementById('updateID').value = id;
         showLoader();
-        let res = await axios.post("/category-by-id", {
+        let res = await axios.post("/category_by_id", {
             id: id
         })
         hideLoader();
@@ -46,7 +46,7 @@
         } else {
             document.getElementById('update-modal-close').click();
             showLoader();
-            let res = await axios.post("/categoryUpdate", {
+            let res = await axios.post("/category_update", {
                 name: categoryName,
                 id: updateID
             })

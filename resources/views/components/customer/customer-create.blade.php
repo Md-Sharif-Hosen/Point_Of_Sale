@@ -44,7 +44,7 @@
         }else{
             document.getElementById('modal-close').click();
             showLoader();
-            let res = await axios.post("/customerCreate",{
+            let res = await axios.post("/customer_create",{
                 name:customerName,
                 email:customerEmail,
                 mobile:customerMobile

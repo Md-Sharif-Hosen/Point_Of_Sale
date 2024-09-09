@@ -27,7 +27,7 @@
                                 <input type="text" class="form-control" id="productUnit">
 
                                 <br/>
-                                <img class="w-15" id="newImg" src="{{asset('images/default.jpg')}}"/>
+                                <img class="w-15" id="newImg" src="{{asset('assets/images/default.jpg')}}"/>
                                 <br/>
 
                                 <label class="form-label">Image</label>
@@ -46,5 +46,59 @@
     </div>
 </div>
 
+<script>
+    FillCategoryDropDown();
+    async function FillCategoryDropDown(){
+        let res=await axios.get("/category_list");
+        res.data.forEach(function(item,i){
+            let option=`<option value ="${item['id']}">${item['name']}</option>`
+            $("#productCategory").append(option);
+        });
+    }
+    async function Save() {
+            let productCategory=document.getElementById("productCategory").value;
+            let productName=document.getElementById("productName").value;
+            let productPrice=document.getElementById("productPrice").value;
+            let productUnit=document.getElementById("productUnit").value;
+            let productImg=document.getElementById("productImg").files[0];
 
+            if(productCategory.length===0){
+              errorToast("Product Category is required");
+            }else if(productName.length===0){
+            errorToast("Product Name is required");
+            }else if(productPrice.length===0){
+                errorToast("Product Price is required");
+            }else if(productUnit.length===0){
+                errorToast("Product Unit is required");
+            }else if(productImg.length===0){
+                errorToast("Product Image is required");
+            }else{
+                document.getElementById('modal-close').click();
+
+                let formData=new FormData();
+                formData.append('img',productImg);
+                formData.append('name',productName);
+                formData.append('price',productPrice);
+                formData.append('unit',productUnit);
+                formData.append('category_id',productCategory);
+
+                const config={
+                    headers:{
+                        'content-type':'multipart/form-data'
+                    }
+                }
+                showLoader();
+                let res= await axios.post("/product_create",formData,config);
+                hideLoader();
+
+                if(res.status===201){
+                    successToast("Product Create Successfull");
+                    document.getElementById("save-form").reset();
+                    await getList();
+                }else{
+                    errorToast("Product Create Failed");
+                }
+            }
+    }
+</script>
 

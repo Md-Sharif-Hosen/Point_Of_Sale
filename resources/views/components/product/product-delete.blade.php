@@ -17,4 +17,20 @@
         </div>
     </div>
 </div>
+<script>
+    async function itemDelete() {
+        let id=document.getElementById("deleteID").value;
+        let deleteFilePath=document.getElementById("deleteFilePath").value;
+        document.getElementById("delete-modal-close").click();
+        showLoader();
+        let res = await axios.post("/product_delete",{id:id,filePath:deleteFilePath});
+        hideLoader();
+        if(res.data===1){
+            successToast('Deleted Successfully');
+            await getList();
+        }else{
+            errorToast('Failed to delete');
+        }
+    }
+</script>
 

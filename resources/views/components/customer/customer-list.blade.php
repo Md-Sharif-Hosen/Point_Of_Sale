@@ -37,7 +37,7 @@ getList();
 
 async function getList() {
     showLoader();
-    let res=await axios.get("/customerList");
+    let res=await axios.get("/customer_list");
     hideLoader();
 
     let tableList=$("#tableList");
@@ -73,7 +73,7 @@ async function getList() {
     })
 
     new DataTable('#tableData',{
-        order:[[0,'desc']],
+        order:[[0,'asc']],
         lengthMenu:[5,10,15,20,30]
     });
 

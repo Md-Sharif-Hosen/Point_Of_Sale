@@ -12,34 +12,30 @@
                     </div>
                 </div>
                 <hr class="bg-secondary" />
-                <div class="table-responsive">
-                    <table class="table" id="tableData">
-                        <thead>
-                            <tr class="bg-light">
-                                <th>No</th>
-                                <th>Category</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableList">
+                <table class="table" id="tableData">
+                    <thead>
+                        <tr class="bg-light">
+                            <th>No</th>
+                            <th>Category</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableList">
+                        <!-- Data will be appended here -->
+                    </tbody>
+                </table>
 
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
     </div>
 </div>
-
 <script>
     getList();
 
-
     async function getList() {
-
-
         showLoader();
-        let res = await axios.get("/categoryList");
+        let res = await axios.get('/category_list');
+        console.log(res)
         hideLoader();
 
         let tableList = $("#tableList");
@@ -50,17 +46,17 @@
 
         res.data.forEach(function(item, index) {
             let row = `<tr>
-                        <td>${index+1}</td>
-                        <td>${item['name']}</td>
-                        <td>
-                            <button data-id="${item['id']}" class="btn editBtn btn-sm btn-outline-success">Edit</button>
-                            <button data-id="${item['id']}" class="btn deleteBtn btn-sm btn-outline-danger">Delete</button>
-                        </td>
-                     </tr>`
+                    <td>${index+1}</td>
+                    <td>${item['name']}</td>
+                    <td>
+                        <button data-id="${item['id']}" class="btn editBtn btn-sm btn-outline-success">Edit</button>
+                        <button data-id="${item['id']}" class="btn deleteBtn btn-sm btn-outline-danger">Delete</button>
+                    </td>
+                 </tr>`
             tableList.append(row)
-        });
+        })
 
-        $('.editBtn').on('click',async function() {
+        $('.editBtn').on('click', async function() {
             let id = $(this).data('id');
             await FillUpUpdateForm(id);
             $('#update-modal').modal('show');
@@ -75,10 +71,10 @@
         });
 
 
-        new DataTable('#tableData', {
-            order: [0, 'asc'],
-            lengthMenu: [5, 10, 15, 20, 30]
-        });
+        new DataTable('#tableData',{
+        order:[[0,'asc']],
+        lengthMenu:[5,10,15,20,30]
+    });
 
     }
 </script>

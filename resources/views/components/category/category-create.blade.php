@@ -33,7 +33,7 @@
         } else {
             document.getElementById('modal-close').click();
             showLoader();
-            let res = await axios.post("/categoryCreate", {
+            let res = await axios.post("/category_create", {
                 name:categoryName
             })
             hideLoader();

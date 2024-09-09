@@ -37,7 +37,7 @@
     async function FillUpUpdateForm(id) {
         document.getElementById("updateID").value = id;
         showLoader();
-        let res = await axios.post("/customerByID", {
+        let res = await axios.post("/customer_by_id", {
             id: id
         });
         hideLoader();
@@ -59,7 +59,7 @@
             errorToast("Customer Mobile is required");
         } else {
             showLoader()
-            let res = await axios.post("/customerUpdate", {
+            let res = await axios.post("/customer_update", {
                 id: updateID,
                 name: customerName,
                 email: customerEmail,
