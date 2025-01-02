@@ -1,11 +1,11 @@
-<?php 
+<?php
 namespace App\Helper;
 use Firebase\JWT\JWT;
 use Exception;
 use Firebase\JWT\Key;
 
   class JWTToken{
- 
+
      public static function CreateToken($userEmail,$userID):string
      {
          $key=env('JWT_KEY');
@@ -46,16 +46,16 @@ use Firebase\JWT\Key;
                   return $decode;
           }
           }
-          
+
            catch (Exception $e) {
-            
+
             return "Unauthorized";
           }
         }
-   
-        
-     
-      
+
+
+
+
   }
 
 ?>

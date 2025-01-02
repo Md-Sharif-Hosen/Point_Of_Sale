@@ -48,7 +48,7 @@ class UserController extends Controller
                 'email' => $request->input('email'),
                 'mobile' => $request->input('mobile'),
                 'password' => $request->input('password'),
-                //  'password' => Hash::make($request->input('password')),
+                'password' => Hash::make($request->input('password')),
             ]);
             return response()->json([
                 "status" => "success",
@@ -66,52 +66,60 @@ class UserController extends Controller
 
     public function UserLogin(request $request)
     {
-        //function_body
-        // try{
-        //   $count=User::where( 'email' , '=' ,$request->input("email"))
-        //   ->where('password','=',$request->input("password"))
-        //   ->select('id')->first();
+        /* function_body
+        try{
+          $count=User::where( 'email' , '=' ,$request->input("email"))
+          ->where('password','=',$request->input("password"))
+          ->select('id')->first();
 
-        //   if ($count !== null) {
-        //    $token=JWTToken::CreateToken($request->input("email"),$count->id);
-        //    return response()->json([
-        //      'status'=>'success',
-        //      'message'=>"User login successfull",
+          if ($count !== null) {
+           $token=JWTToken::CreateToken($request->input("email"),$count->id);
+           return response()->json([
+             'status'=>'success',
+             'message'=>"User login successfull",
 
-        //    ],200)->cookie('token',$token ,time()+60*24*30);
-        //   }else{
-        //    return response()->json([
-        //      'status'=>'Failed',
-        //      'message'=>"Unauthorized",
-        //    ],200);
-        //   }
-        // }catch(Exception $e){
-        //   return $e->getMessage();
-        // }
+           ],200)->cookie('token',$token ,time()+60*24*30);
+          }else{
+           return response()->json([
+             'status'=>'Failed',
+             'message'=>"Unauthorized",
+           ],200);
+          }
+        }catch(Exception $e){
+          return $e->getMessage();
+        } */
         try {
             $user = User::where('email', $request->input('email'))->first();
 
-            // Check if the user exists and if the password matches
-            if ($user && Hash::check($request->input('password'), $user->password)) {
-                $token = JWTToken::CreateToken($request->input('email'), $user->id);
-                return response()->json([
-                    'status' => 'success',
-                    'message' => "User login successful",
-                ], 200)->cookie('token', $token, time() + 60 * 24 * 30);
-            } else {
+            // Check if the user exists
+            if (!$user) {
                 return response()->json([
                     'status' => 'failed',
-                    'message' => "Unauthorized",
-                ], 401); // It's more appropriate to return 401 for unauthorized access
+                    'message' => "This email is not registered",
+                ], 404); // 404 for email not found
             }
+
+            // Check if the password matches
+            if (!Hash::check($request->input('password'), $user->password)) {
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => "Incorrect password",
+                ], 401); // 401 for incorrect password
+            }
+
+            // Generate token if user and password are valid
+            $token = JWTToken::CreateToken($request->input('email'), $user->id);
+            return response()->json([
+                'status' => 'success',
+                'message' => "User login successful",
+            ], 200)->cookie('token', $token, time() + 60 * 24 * 30);
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => $e->getMessage()
-            ], 500); // Returning 500 for server errors
+                'message' => $e->getMessage(),
+            ], 500); // 500 for server error
         }
     }
-
     public function SendOTPCode(request $request)
     {
         //function_body
@@ -163,7 +171,7 @@ class UserController extends Controller
         try {
             $email = $request->header('email');
             $password = $request->input('password');
-            User::where('email', '=', $email)->update(['password' => $password]);
+            User::where('email', '=', $email)->update(['password' => Hash::make($password)]);
             return response()->json([
                 'status' => 'success',
                 //  'message'=>$result

@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/testlist',[TestController::class,'testList'])->name('testlist');
+Route::post('/createtest',[TestController::class,'Create'])->name('create');
+Route::get('/edit',[TestController::class,'Edit']);
+Route::post('/update',[TestController::class,'update']);
+Route::post('/deletetask',[TestController::class,'Delete']);
 
 //!User API Routes
 Route::post('/user_registration', [UserController::class, 'UserRegistration'])->name('user_registration');
@@ -52,12 +59,12 @@ Route::post('/customer_by_id',[CustomerController::class,'CustomerByID'])->middl
 Route::post('/customer_update',[CustomerController::class,'CustomerUpdate'])->middleware(TokenverificationMiddleware::class);
 Route::post('/customer_delete',[CustomerController::class,'CustomerDelete'])->middleware(TokenverificationMiddleware::class);
 
-//!Product API Routes
-Route::post('/product_create',[ProductController::class,'ProductCreate'])->middleware(TokenverificationMiddleware::class);
-Route::post('/product_delete',[ProductController::class,'ProductDelete'])->middleware(TokenverificationMiddleware::class);
-Route::post('/product_by_id',[ProductController::class,'ProductByID'])->middleware(TokenverificationMiddleware::class);
-Route::post('/product_update',[ProductController::class,'ProductUpdate'])->middleware(TokenverificationMiddleware::class);
-Route::get('/product_list',[ProductController::class,'ProductList'])->middleware(TokenverificationMiddleware::class);
+ 
+//!Invoice API Routes
+Route::get('/invoice_select',[InvoiceController::class,'invoiceSelect'])->middleware(TokenverificationMiddleware::class);
+Route::post('/invoice_create',[InvoiceController::class,'InvoiceCreate'])->middleware(TokenverificationMiddleware::class);
+Route::post('/invoice_details',[InvoiceController::class,'InvoiceDetails'])->middleware(TokenverificationMiddleware::class);
+Route::post('/invoice_delete',[InvoiceController::class,'InvoiceDelete'])->middleware(TokenverificationMiddleware::class);
 
 //!page Routes
 Route::get('/userLogin', [UserController::class, 'LoginPage'])->name('userLogin');
@@ -65,7 +72,7 @@ Route::get('/userRegistration', [UserController::class, 'RegistrationPage'])->na
 Route::get('/sendOTP', [UserController::class, 'SendOTPPage'])->name('sendOTP');
 Route::get('/verifyOTP', [UserController::class, 'VerifyOTPPage'])->name('verifyOTP');
 Route::get('/resetPassword', [UserController::class, 'ResetPasswordPage'])->middleware([TokenverificationMiddleware::class]);
-Route::get('/dashboard', [DashboardController::class, 'DashboardPage'])->middleware([TokenverificationMiddleware::class]);
+Route::get('/dashboard', [DashboardController::class, 'DashboardPage'])->middleware(['isname','token']);
 Route::get('/profilePage', [UserController::class, 'UserProfilePage'])->middleware([TokenverificationMiddleware::class]);
 Route::get('/categoryPage', [CategoryController::class, 'CategoryPage']);
 Route::get('/customerPage', [CustomerController::class, 'CustomerPage']);
