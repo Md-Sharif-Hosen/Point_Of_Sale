@@ -59,6 +59,12 @@ Route::post('/customer_by_id',[CustomerController::class,'CustomerByID'])->middl
 Route::post('/customer_update',[CustomerController::class,'CustomerUpdate'])->middleware(TokenverificationMiddleware::class);
 Route::post('/customer_delete',[CustomerController::class,'CustomerDelete'])->middleware(TokenverificationMiddleware::class);
 
+// Product API
+Route::post("/product_create",[ProductController::class,'ProductCreate'])->middleware([TokenVerificationMiddleware::class]);
+Route::post("/product_delete",[ProductController::class,'ProductDelete'])->middleware([TokenVerificationMiddleware::class]);
+Route::post("/product_update",[ProductController::class,'ProductUpdate'])->middleware([TokenVerificationMiddleware::class]);
+Route::get("/product_list",[ProductController::class,'ProductList'])->middleware([TokenVerificationMiddleware::class]);
+Route::post("/product_by_id",[ProductController::class,'ProductByID'])->middleware([TokenVerificationMiddleware::class]);
  
 //!Invoice API Routes
 Route::get('/invoice_select',[InvoiceController::class,'invoiceSelect'])->middleware(TokenverificationMiddleware::class);

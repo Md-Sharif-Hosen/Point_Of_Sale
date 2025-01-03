@@ -50,7 +50,7 @@
 </div>
 <script>
     async function UpdateFillCategoryDropDown() {
-        let res = await axios.get("categoryList")
+        let res = await axios.get("/category_list")
         res.data.forEach(function(item, i) {
             let option = `<option value="${item['id']}">${item['name']}</option>`
             $("#productCategoryUpdate").append(option);
