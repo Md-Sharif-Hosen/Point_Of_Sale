@@ -126,6 +126,15 @@
         </div>
     </div>
 
+<script>
+    (async ()=>{
+        showloader();
+        await CustomerList();
+        await ProductList();
+        hideLoader();
+    })();
+    
+</script>
 
  
 
