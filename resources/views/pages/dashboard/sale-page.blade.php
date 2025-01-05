@@ -139,8 +139,8 @@
 
     <script>
         (async () => {
-            showloader();
-            await CustomerList();
+            showLoader();
+            await  CustomerList();
             await ProductList();
             hideLoader();
         })();
@@ -151,13 +151,14 @@
             let invoiceList = $('#invoiceList');
             invoiceList.empty();
 
-            InvoiceItemList.forEeach(function(item, index) {
+            InvoiceItemList.forEach(function(item, index) {
                 let row = `<tr class="text-xs">
                     <td>${item['product_name']} </td>
                     <td>${item['qty']} </td>
-                    <td>${item['qty']} </td>
+                    <td>${item['sale_price']} </td>
+                    <td> <a data-index="${index}" class="btn remove text-xxs px-2 py-1 btn-sm m-0"> Remove </a> </td>
                     </tr>`
-                invoiceList.append(row);
+                invoiceList.append(row)
 
             })
             CalculateGrandTotal();
@@ -182,23 +183,23 @@
             let VAT = 0;
             let Payable = 0;
             let Discount = 0;
-            let discountparcentage = (parseFloat(document.getElementById('discountP').value));
+            let discountPercentage = (parseFloat(document.getElementById('discountP').value));
 
-            InvoiceItemList.forEeach((item, index) => {
+            InvoiceItemList.forEach((item, index) => {
                 Total = Total + parseFloat(item['sale_price'])
             })
-            if (discountpercentage === 0) {
+            if (discountPercentage === 0) {
                 Vat = ((Total * 5) / 100).toFixed(2);
             } else {
-                Discount = ((Total * discountparcentage) / 100).toFixed(2);
-                Total = (Total - ((Total * discountparcentage) / 100)).toFixed(2);
+                Discount = ((Total * discountPercentage) / 100).toFixed(2);
+                Total = (Total - ((Total * discountPercentage) / 100)).toFixed(2);
                 Vat = ((Total * 5) / 100).toFixed(2);
             }
             Payable = parseFloat(Total) + parseFloat(Vat).toFixed(2);
 
             document.getElementById('total').innerText = Total;
-            document.getElementById('vat').innerText = Vat;
             document.getElementById('payable').innerText = Payable;
+            document.getElementById('vat').innerText = Vat;
             document.getElementById('discount').innerText = Discount;
         }
 
@@ -217,7 +218,7 @@
             } else {
                 let item = {
                     product_name: PName,
-                    product_id.PId,
+                    product_id:PId,
                     qty: PQty,
                     sale_price: PTotalPrice
                 };
@@ -241,7 +242,7 @@
             customerTable.DataTable().destroy();
             customerList.empty();
 
-            res.data.forEeach(function(item, index) {
+            res.data.forEach(function(item, index) {
                 let row = `<tr class="text-xs">
                     <td><i class="bi bi-person"> </i>${item['name']}</td>
                     <td> <a data-name="${item['name']}" data-email="${item['email']}" data-id= "${item['id']}"  class="btn btn-outline-dark addCustomer  text-xxs px-2 py-1  btn-sm m-0">Add</a></td>
@@ -256,7 +257,7 @@
 
                 $("#CName").text(CName)
                 $("#CEmail").text(CEmail)
-                $("#CID").text(CId)
+                $("#CId").text(CId)
             })
 
             new DataTable('#customerTable', {
@@ -270,13 +271,13 @@
         }
 
         async function ProductList() {
-            let res = await.get("/product_list");
+            let res = await axios.get("/product_list");
             let productList = $("#productList");
             let productTable = $('#productTable');
             productTable.DataTable().destroy();
             productList.empty();
 
-            res.data.forEeach(function(item, index) {
+            res.data.forEach(function(item, index) {
                 let row = `<tr class="text-xs">
                     <td> <img class="w-10" src="${item['img_url']}"/> ${item['name']} ($ ${item['price']})</td>
                     <td><a data-name="${item['name']}" data-price="${item['price']}" data-id="${item['id']}" class="btn btn-outline-dark text-xxs px-2 py-1 addProduct  btn-sm m-0">Add</a></td>
@@ -320,7 +321,7 @@
             } else if (InvoiceItemList.length === 0) {
                 errorToast('Product Required')
             } else {
-                showloader();
+                showLoader();
                 let res = await axios.post("/invoice_create", Data)
                 hideLoader();
 
