@@ -195,7 +195,7 @@
                 Total = (Total - ((Total * discountPercentage) / 100)).toFixed(2);
                 Vat = ((Total * 5) / 100).toFixed(2);
             }
-            Payable = parseFloat(Total) + parseFloat(Vat).toFixed(2);
+            Payable =( parseFloat(Total) + parseFloat(Vat)).toFixed(2);
 
             document.getElementById('total').innerText = Total;
             document.getElementById('payable').innerText = Payable;
