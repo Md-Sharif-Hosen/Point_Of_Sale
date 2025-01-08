@@ -43,13 +43,17 @@
                     <div class="row">
                         <div class="col-12">
                             <p class="text-bold text-xs my-1 text-dark"> TOTAL: <i class="bi bi-currency-dollar"></i>
-                                <span id="total"></span></p>
+                                <span id="total"></span>
+                            </p>
                             <p class="text-bold text-xs my-2 text-dark"> PAYABLE: <i class="bi bi-currency-dollar"></i>
-                                <span id="payable"></span></p>
+                                <span id="payable"></span>
+                            </p>
                             <p class="text-bold text-xs my-1 text-dark"> VAT(5%): <i class="bi bi-currency-dollar"></i>
-                                <span id="vat"></span></p>
+                                <span id="vat"></span>
+                            </p>
                             <p class="text-bold text-xs my-1 text-dark"> Discount: <i class="bi bi-currency-dollar"></i>
-                                <span id="discount"></span></p>
+                                <span id="discount"></span>
+                            </p>
                         </div>
 
                     </div>
@@ -64,12 +68,11 @@
 </div>
 <script>
     async function InvoiceDetails(cus_id, inv_id) {
-
-        showLoader()
-        let res = await axios.post("/invoice_details", {
+        showLoader();
+        let res = await axios.post('/invoice_details', {
             cus_id: cus_id,
             inv_id: inv_id
-        })
+        });
         hideLoader();
 
         document.getElementById('CName').innerText = res.data['customer']['name']
@@ -80,32 +83,28 @@
         document.getElementById('vat').innerText = res.data['invoice']['vat']
         document.getElementById('discount').innerText = res.data['invoice']['discount']
 
-
         let invoiceList = $('#invoiceList');
-
         invoiceList.empty();
 
         res.data['product'].forEach(function(item, index) {
-            let row = `<tr class="text-xs">
-                        <td>${item['product']['name']}</td>
-                        <td>${item['qty']}</td>
-                        <td>${item['sale_price']}</td>
-                     </tr>`
+            let row = `<tr>
+            <td>${item['product']['name']}</td>
+            <td>${item['qty']}</td>
+            <td>${item['sale_price']}</td>
+            <tr`
             invoiceList.append(row)
         });
 
-
-
-        $("#details-modal").modal('show')
+        $('#details-modal').modal('show');
     }
 
     function PrintPage() {
         let printContents = document.getElementById('invoice').innerHTML;
         let originalContents = document.body.innerHTML;
-        document.body.innerHTML = printContents;
+        document.body.innerText = printContents;
         window.print();
         document.body.innerHTML = originalContents;
-        setTimeout(function() {
+        setTimeout(() => {
             location.reload();
         }, 1000);
     }
