@@ -72,6 +72,9 @@ Route::post('/invoice_create',[InvoiceController::class,'InvoiceCreate'])->middl
 Route::post('/invoice_details',[InvoiceController::class,'InvoiceDetails'])->middleware(TokenverificationMiddleware::class);
 Route::post('/invoice_delete',[InvoiceController::class,'InvoiceDelete'])->middleware(TokenverificationMiddleware::class);
 
+
+Route::get('/summary',[DashboardController::class, 'Summary'])->middleware(TokenverificationMiddleware::class);
+
 //!page Routes
 Route::get('/userLogin', [UserController::class, 'LoginPage'])->name('userLogin');
 Route::get('/userRegistration', [UserController::class, 'RegistrationPage'])->name('userRegistration');
