@@ -66,14 +66,17 @@ Route::post("/product_update",[ProductController::class,'ProductUpdate'])->middl
 Route::get("/product_list",[ProductController::class,'ProductList'])->middleware([TokenVerificationMiddleware::class]);
 Route::post("/product_by_id",[ProductController::class,'ProductByID'])->middleware([TokenVerificationMiddleware::class]);
  
-//!Invoice API Routes
+//!Invoice  Routes
 Route::get('/invoice_select',[InvoiceController::class,'invoiceSelect'])->middleware(TokenverificationMiddleware::class);
 Route::post('/invoice_create',[InvoiceController::class,'InvoiceCreate'])->middleware(TokenverificationMiddleware::class);
 Route::post('/invoice_details',[InvoiceController::class,'InvoiceDetails'])->middleware(TokenverificationMiddleware::class);
 Route::post('/invoice_delete',[InvoiceController::class,'InvoiceDelete'])->middleware(TokenverificationMiddleware::class);
 
-
+//Dashboard
 Route::get('/summary',[DashboardController::class, 'Summary'])->middleware(TokenverificationMiddleware::class);
+
+//Report page APi
+Route::get('/sales_report/{FormDate}/{ToDate}',[ReportController::class, 'SalesReport'])->middleware([TokenverificationMiddleware::class]);
 
 //!page Routes
 Route::get('/userLogin', [UserController::class, 'LoginPage'])->name('userLogin');
