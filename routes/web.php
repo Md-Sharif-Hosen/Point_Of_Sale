@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ReportController;
@@ -23,9 +24,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/',[HomeController::class,'HomePage']);
 
 Route::get('/testlist',[TestController::class,'testList'])->name('testlist');
 Route::post('/createtest',[TestController::class,'Create'])->name('create');
@@ -65,7 +67,7 @@ Route::post("/product_delete",[ProductController::class,'ProductDelete'])->middl
 Route::post("/product_update",[ProductController::class,'ProductUpdate'])->middleware([TokenVerificationMiddleware::class]);
 Route::get("/product_list",[ProductController::class,'ProductList'])->middleware([TokenVerificationMiddleware::class]);
 Route::post("/product_by_id",[ProductController::class,'ProductByID'])->middleware([TokenVerificationMiddleware::class]);
- 
+
 //!Invoice  Routes
 Route::get('/invoice_select',[InvoiceController::class,'invoiceSelect'])->middleware(TokenverificationMiddleware::class);
 Route::post('/invoice_create',[InvoiceController::class,'InvoiceCreate'])->middleware(TokenverificationMiddleware::class);

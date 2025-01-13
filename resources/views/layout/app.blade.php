@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <title>X-Bakery</title>
+    <title>SHOP Inventory Management System </title>
     <link rel="icon" type="image/x-icon" href="{{asset('/favicon.ico')}}" />
     <link href="{{asset('assets/css/bootstrap.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/css/animate.min.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/css/fontawesome.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/css/toastify.min.css')}}" rel="stylesheet" />
-    
+
     <script src="{{asset('assets/js/toastify-js.js')}}"></script>
     <script src="{{asset('assets/js/axios.min.js')}}"></script>
     <script src="{{asset('assets/js/config.js')}}"></script>
