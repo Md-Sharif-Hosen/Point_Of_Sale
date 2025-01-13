@@ -101,7 +101,7 @@
     function PrintPage() {
         let printContents = document.getElementById('invoice').innerHTML;
         let originalContents = document.body.innerHTML;
-        document.body.innerText = printContents;
+        document.body.innerHTML= printContents;
         window.print();
         document.body.innerHTML = originalContents;
         setTimeout(() => {
