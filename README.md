@@ -1,4 +1,4 @@
-# POS Application
+# Point Of Sale Application
 
 ## Initial Idea & Problem Statement
 This system is designed to help businesses streamline their operations. By leveraging system data, users can make informed decisions, identify inefficiencies, and enhance their business performance.
