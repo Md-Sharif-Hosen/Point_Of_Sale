@@ -93,7 +93,7 @@ This system is designed to help businesses streamline their operations. By lever
 Below are some visual examples of the key features of the POS application:
 
 ### 1. ER(Entity Relationship) Diagram
-![Database](screenshots/ER Diagram Point_of_sale_db.png)
+![Database](screenshots/ERDiagramPoint_of_sale_db.png)
 
 ### 2. Home Page
 ![Home Page](screenshots/home_page.png)
