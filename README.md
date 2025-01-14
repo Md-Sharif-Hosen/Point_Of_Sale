@@ -1,3 +1,4 @@
+![visitors](https://visitor-badge.laobi.icu/badge?page_id=Md-Sharif-Hosen/Point_Of_Sale.readme)
 # Point Of Sale Application
 
 ## Initial Idea & Problem Statement
@@ -47,7 +48,7 @@ This system is designed to help businesses streamline their operations. By lever
 
 1. Clone the repository:
       ```bash
-          git clone https://github.com/yourusername/pos-application.git
+          git clone https://github.com/yourusername/Point_Of_Sale.git
           cd pos-application
 
 2. Install dependencies:
