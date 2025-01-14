@@ -16,36 +16,6 @@ class ReportController extends Controller
 //    function SalesReport(Request $request)
 //     {
 
-//         $user_id = $request->header('id');
-//         $FormDate = date('Y-m-d', strtotime($request->FormDate));
-//         $ToDate = date('Y-m-d', strtotime($request->ToDate));
-
-//         $total = Invoice::where('user_id', $user_id)->whereDate('created_at', '>=', $FormDate)->whereDate('created_at', '<=', $ToDate)->sum('total');
-//         $vat = Invoice::where('user_id', $user_id)->whereDate('created_at', '>=', $FormDate)->whereDate('created_at', '<=', $ToDate)->sum('vat');
-//         $payable = Invoice::where('user_id', $user_id)->whereDate('created_at', '>=', $FormDate)->whereDate('created_at', '<=', $ToDate)->sum('payable');
-//         $discount = Invoice::where('user_id', $user_id)->whereDate('created_at', '>=', $FormDate)->whereDate('created_at', '<=', $ToDate)->sum('discount');
-
-
-//         $list = Invoice::where('user_id', $user_id)
-//             ->whereDate('created_at', '>=', $FormDate)
-//             ->whereDate('created_at', '<=', $ToDate)
-//             ->with('customer')->get();
-
-
-//         $data = [
-//             'payable' => $payable,
-//             'discount' => $discount,
-//             'total' => $total,
-//             'vat' => $vat,
-//             'list' => $list,
-//             'FormDate' => $request->FormDate,
-//             'ToDate' => $request->FormDate
-//         ];
-
-//         $pdf = Pdf::loadView('pages.report.salesreport', $data);
-
-//         return $pdf->download('invoice.pdf');
-//     }
 public function SalesReport( Request $request)
 {
     $user_id=$request->header('id');
