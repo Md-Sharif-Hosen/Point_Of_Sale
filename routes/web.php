@@ -29,12 +29,6 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/',[HomeController::class,'HomePage']);
 
-Route::get('/testlist',[TestController::class,'testList'])->name('testlist');
-Route::post('/createtest',[TestController::class,'Create'])->name('create');
-Route::get('/edit',[TestController::class,'Edit']);
-Route::post('/update',[TestController::class,'update']);
-Route::post('/deletetask',[TestController::class,'Delete']);
-
 //!User API Routes
 Route::post('/user_registration', [UserController::class, 'UserRegistration'])->name('user_registration');
 Route::post('/user_login', [UserController::class, 'UserLogin'])->name('user_login');
