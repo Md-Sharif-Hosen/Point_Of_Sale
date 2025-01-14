@@ -101,7 +101,7 @@ Below are some visual examples of the key features of the POS application:
 ---
 
 ### 3. Dashboard page
-![Dashboard page](screenshots/Dashboard_page.png)
+![Dashboard page](screenshots/dashboard_page.png)
 
 ---
 
@@ -115,7 +115,7 @@ Below are some visual examples of the key features of the POS application:
 ---
 
 ### 3. Sales Report
-![Business Report](screenshots/Sales-report_page.png)
+![Sales Report](screenshots/Sales_report_page.png)
 
 ---
 
