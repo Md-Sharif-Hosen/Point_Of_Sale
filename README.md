@@ -92,34 +92,37 @@ This system is designed to help businesses streamline their operations. By lever
 
 Below are some visual examples of the key features of the POS application:
 
-### 1. Home Page
+### 1. ER(Entity Relationship) Diagram
+![Database](screenshots/ER Diagram Point_of_sale_db.png)
+
+### 2. Home Page
 ![Home Page](screenshots/home_page.png)
 
-### 2. Login Page
+### 3. Login Page
 ![Login Page](screenshots/login_page.png)
 
 ---
 
-### 3. Dashboard page
+### 4. Dashboard page
 ![Dashboard page](screenshots/dashboard_page.png)
 
 ---
 
-### 3. Sales page
+### 5. Sales page
 ![Sales page](screenshots/Sales_page.png)
 
 ---
-### 3. Invoice Details page
+### 6. Invoice Details page
 ![Invoice Details page](screenshots/Invoice_details_page.png)
 
 ---
 
-### 3. Sales Report
+### 7. Sales Report
 ![Sales Report](screenshots/Sales_report_page.png)
 
 ---
 
-### 4. Toastify Notifications
+### 8. Toastify Notifications
 ![Toastify Notifications](screenshots/toastify-notifications.png)
 
 
