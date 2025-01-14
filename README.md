@@ -93,10 +93,10 @@ This system is designed to help businesses streamline their operations. By lever
 Below are some visual examples of the key features of the POS application:
 
 ### 1. Home Page
-![Home Page](screenshots/home-page.png)
+![Home Page](screenshots/home_page.png)
 
 ### 2. Login Page
-![Login Page](screenshots/login-page.png)
+![Login Page](screenshots/login_page.png)
 
 ---
 
@@ -115,7 +115,7 @@ Below are some visual examples of the key features of the POS application:
 ---
 
 ### 3. Sales Report
-![Business Report](screenshots/business-report.png)
+![Business Report](screenshots/Sales-report_page.png)
 
 ---
 
