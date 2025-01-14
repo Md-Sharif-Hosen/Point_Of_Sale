@@ -29,6 +29,13 @@ class DashboardController extends Controller
     $vat=Invoice::where('user_id',$user_id)->sum('vat');
     $payable=Invoice::where('user_id',$user_id)->sum('payable');
 
+    $salesData=Invoice::where('user_id',$user_id)
+       ->selectRaw('DATE(created_at) as date, SUM(total) as total')
+       ->groupBy('date')
+       ->orderBy('date','desc')
+       ->take(7)
+       ->get();
+
     return[
         'product'=>$product,
         'category'=>$category,
@@ -37,6 +44,7 @@ class DashboardController extends Controller
         'total'=>$total,
         'vat'=>$vat,
         'payable'=>$payable,
+        'salesData'=>$salesData
     ];
     }
 }

@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <div class="container-fluid">
     <div class="row">
 
@@ -160,20 +161,76 @@
 
     </div>
 </div>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Other cards here -->
+
+        <!-- Chart Card -->
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 animated fadeIn p-2">
+            <div class="card card-plain h-100 bg-white">
+                <div class="p-3">
+                    <h5 class="font-weight-bold text-center">Total Sales Chart</h5>
+                    <canvas id="salesChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 <script>
     getList();
-    async function getList(){
+    async function getList() {
         showLoader();
-        let res=await axios.get('/summary');
-        document.getElementById('product').innerText=res.data['product'];
-        document.getElementById('category').innerText=res.data['category'];
-        document.getElementById('customer').innerText=res.data['customer'];
-        document.getElementById('invoice').innerText=res.data['invoice'];
-        document.getElementById('total').innerText=res.data['total'];
-        document.getElementById('vat').innerText=res.data['vat'];
-        document.getElementById('payable').innerText=res.data['payable'];
-        
+        let res = await axios.get('/summary');
+
+        document.getElementById('product').innerText = res.data['product'];
+        document.getElementById('category').innerText = res.data['category'];
+        document.getElementById('customer').innerText = res.data['customer'];
+        document.getElementById('invoice').innerText = res.data['invoice'];
+        document.getElementById('total').innerText = res.data['total'];
+        document.getElementById('vat').innerText = res.data['vat'];
+        document.getElementById('payable').innerText = res.data['payable'];
+
+        //sales data for chart
+        const labels=res.data.salesData.map(item=>item.date);
+        const data=res.data.salesData.map(item=>item.total);
+
+        //render chart
+        const ctx=document.getElementById('salesChart').getContext('2d');
+        new Chart(ctx,{
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Total Sales',
+                    data: data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend:{
+                        position:'top',
+                    },
+                    title:{
+                        display: true,
+                        text: 'Sales Over Last 7 days'
+                    }
+                }
+            }
+        });
+
+
+
+
+
+
         hideLoader();
     }
 </script>
