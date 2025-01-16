@@ -15,25 +15,21 @@ class CategorySeeder extends Seeder
     {
         // Category::truncate();
         Category::create([
-            'name' => 'Electronics',
+            'name' => 'Computer Accessories',
             'user_id'=>1
         ]);
 
         Category::create([
-            'name' => 'Clothing',
-            'user_id'=>2
-        ]);
-        Category::create([
-            'name' => 'Books',
-            'user_id'=>3
-        ]);
-        Category::create([
-            'name' => 'Computer',
+            'name' => 'Network Component',
             'user_id'=>1
         ]);
         Category::create([
-            'name' => 'Home & Garden',
-            'user_id'=>2
+            'name' => 'Software',
+            'user_id'=>1
+        ]);
+        Category::create([
+            'name' => 'Camera Accessories',
+            'user_id'=>1
         ]);
     }
 }

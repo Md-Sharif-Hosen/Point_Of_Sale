@@ -28,7 +28,7 @@ class CustomerSeeder extends Seeder
             'user_id'=>1
         ]);
         Customer::create([
-            'name' => 'Tamu',
+            'name' => 'Shihab',
             'email' => 'johndoe@example.com',
             'mobile'=>'01728767552',
             'user_id'=>1
